@@ -142,6 +142,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     const [isAddingCategory, setIsAddingCategory] = useState(false);
     const [newCategoryName, setNewCategoryName] = useState('');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -405,10 +406,69 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     </div>
 
                     <div className="flex items-center gap-2 lg:gap-4">
-                        <button className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors relative">
-                            <Bell size={20} />
-                            <span className="absolute top-2 right-2.5 h-1.5 w-1.5 bg-red-500 rounded-full ring-2 ring-white"></span>
-                        </button>
+                        <div className="relative">
+                            <button
+                                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                                className={cn(
+                                    "p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors relative",
+                                    isNotificationsOpen && "bg-slate-100 text-slate-900"
+                                )}
+                            >
+                                <Bell size={20} />
+                                <span className="absolute top-2 right-2.5 h-1.5 w-1.5 bg-red-500 rounded-full ring-2 ring-white"></span>
+                            </button>
+
+                            {isNotificationsOpen && (
+                                <>
+                                    <div
+                                        className="fixed inset-0 z-40"
+                                        onClick={() => setIsNotificationsOpen(false)}
+                                    ></div>
+                                    <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in origin-top-right">
+                                        <div className="px-4 py-2 border-b border-slate-50 mb-1 flex justify-between items-center">
+                                            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Notifications</p>
+                                            <span className="text-[10px] bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full font-bold">1 New</span>
+                                        </div>
+
+                                        <div className="max-h-96 overflow-y-auto custom-scrollbar">
+                                            <button
+                                                onClick={() => {
+                                                    const cyberPolicy = policies.find(p => p.id === 9000);
+                                                    if (cyberPolicy) {
+                                                        onSelectPolicy(cyberPolicy);
+                                                        setIsNotificationsOpen(false);
+                                                    }
+                                                }}
+                                                className="w-full text-left px-4 py-3 hover:bg-slate-50 transition-colors border-b border-slate-50 group"
+                                            >
+                                                <div className="flex gap-3">
+                                                    <div className="mt-1 h-8 w-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
+                                                        <ShieldCheck size={16} />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">Must-Know Cyber Law in India</p>
+                                                        <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                                                            Updated by Admin • Dec 21, 2025
+                                                        </p>
+                                                        <p className="text-[10px] text-slate-400 mt-1.5 flex items-center gap-1">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                                            Legal Policy • ~5 min read
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            onClick={() => setIsNotificationsOpen(false)}
+                                            className="w-full text-center py-2 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 transition-colors border-t border-slate-50"
+                                        >
+                                            Mark all as read
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
 
                         {/* Settings Dropdown for Auth */}
                         <div className="relative">

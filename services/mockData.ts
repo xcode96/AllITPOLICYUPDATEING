@@ -119,7 +119,27 @@ export const MOCK_CATEGORIES: Category[] = [
 ];
 
 import { infrastructurePolicies } from './policyData/infrastructurePolicies';
+import { microsoftPolicies } from './policyData/microsoftPolicies';
+import { securityPolicies } from './policyData/securityPolicies';
+import { engineeringPolicies } from './policyData/engineeringPolicies';
+import { qaPolicies } from './policyData/qaPolicies';
+import { dataPolicies } from './policyData/dataPolicies';
+import { enterpriseAppPolicies } from './policyData/enterpriseAppPolicies';
+import { itOpsPolicies } from './policyData/itOpsPolicies';
+import { legalPolicies } from './policyData/legalPolicies';
+import { corporatePolicies } from './policyData/corporatePolicies';
+import { strategyPolicies } from './policyData/strategyPolicies';
 
 export const MOCK_POLICIES: Policy[] = [
     ...infrastructurePolicies,
+    ...microsoftPolicies,
+    ...securityPolicies,
+    ...engineeringPolicies,
+    ...qaPolicies,
+    ...dataPolicies,
+    ...enterpriseAppPolicies,
+    ...itOpsPolicies,
+    ...legalPolicies,
+    ...corporatePolicies,
+    ...strategyPolicies,
 ];
