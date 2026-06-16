@@ -1,6 +1,6 @@
 # What this project actually is
 
-This is essentially a **“Basic Organizational Policy Framework”** — a structured system that:
+This is essentially a **“Basic Organizational Policy Framework”** — a structured system that
 
 * Defines **rules and guidelines** for different departments
 * Explains **why those rules exist**
